@@ -1,0 +1,19 @@
+{
+  "name": "shabelnik",
+  "version": "1.0.0",
+  "description": "A list of materials featuring illustrations of E. Shabelnik.",
+  "private": true,
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kripalser/shabelnik.git"
+  },
+  "author": "kripalser",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.0"
+  }
+}

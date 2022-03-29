@@ -1,0 +1,11 @@
+body {
+  padding: 2rem;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+header,
+main {
+  max-width: 640px;
+  margin: 0 auto;
+}
