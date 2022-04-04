@@ -1,4 +1,5 @@
 ---
+type: book
 title: Выбирайте профессию
 author: Е. Н. Прощицкая
 publisher: Просвещение
