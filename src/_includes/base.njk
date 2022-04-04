@@ -12,17 +12,15 @@
     <h1>{{ title }}</h1>
 </header>
 <main>
-    {% for item in collections.items %}
-        <article>
-            <h2>{{ item.data.title }}, {{ item.data.author }}</h2>
-            <ul>
-                <li>{{ item.data.publisher }}</li>
-                <li>{{ item.data.year }}</li>
-                <li>{{ item.data.isbn }}</li>
-            </ul>
-            {{ item.templateContent | safe }}
-        </article>
-    {% endfor %}
+    <div class="articles">
+        {% for item in collections.items | sort(attribute='data.year') %}
+            <article class="article-card articles__item">
+                <h2 class="article-card__title">{{ item.data.title }}</h2>
+                <div class="article-card__author">{{ item.data.author }}</div>
+                <div class="article-card__imprint">{{ item.data.publisher }}, {{ item.data.year }}</div>
+            </article>
+        {% endfor %}
+    </div>
 </main>
 </body>
 </html>

@@ -10,7 +10,20 @@ main {
   margin: 0 auto;
 }
 
-article + article {
-  margin-top: 1.5rem;
-  border-top: 1px solid lightgray;
+.article-card {
+  padding: 1rem 0;
+  border-top: 1px solid #ccc;
+}
+
+.article-card__title,
+.article-card__author,
+.article-card__imprint {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.article-card__author,
+.article-card__imprint {
+  color: #666;
 }
