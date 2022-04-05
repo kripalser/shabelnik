@@ -6,5 +6,5 @@ publisher: Самовар
 year: 1994
 series: Весёлые учебники
 isbn: 5-85066-012-7
-format: 84x108/16
+format: 84×108/16
 ---
