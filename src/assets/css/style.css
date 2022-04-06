@@ -19,14 +19,14 @@ body {
 @media (min-width: 640px) {
   .articles {
     display: grid;
-    grid-gap: 2rem;
+    align-items: baseline;
+    grid-gap: 4rem 2rem;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
   .articles {
-    grid-gap: 4rem 2rem;
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -54,19 +54,6 @@ body {
   }
 }
 
-.article__thumb {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-@media (min-width: 640px) {
-  .article__thumb {
-    height: 333px; /* 70×108/8 */
-  }
-}
-
 .article__title,
 .article__author,
 .article__imprint {
@@ -74,7 +61,7 @@ body {
 }
 
 .article__title {
-  margin: .5rem 0 0;
+  margin: .75rem 0 0;
   font-weight: normal;
 }
 

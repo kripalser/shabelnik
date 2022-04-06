@@ -16,9 +16,7 @@
         {% for item in collections.items | sort(attribute='data.year') %}
             {% set thumbSize = helpers.getThumbSize(item.data.format) %}
             <article class="article articles__item">
-                <div class="article__thumb">
-                    <img class="article__img" src="assets/img/{{ item.fileSlug }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" alt="">
-                </div>
+                <img class="article__thumb" src="assets/img/{{ item.fileSlug }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" alt="">
                 <h2 class="article__title">{{ item.data.title }}</h2>
                 {% if item.data.author %}<div class="article__author">{{ item.data.author }}</div>{% endif %}
                 <div class="article__imprint">{{ item.data.publisher }}, {{ item.data.year }}</div>
