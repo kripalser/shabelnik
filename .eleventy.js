@@ -3,6 +3,7 @@ const htmlMinifier = require('html-minifier');
 module.exports = (config) => {
     config.addPassthroughCopy('./CNAME');
     config.addPassthroughCopy('./src/assets/css');
+    config.addPassthroughCopy('./src/assets/img');
     config.addWatchTarget('./src/assets/css/');
 
     config.setBrowserSyncConfig({

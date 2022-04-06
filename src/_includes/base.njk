@@ -8,16 +8,20 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<header>
-    <h1>{{ title }}</h1>
+<header class="header">
+    <h1 class="header__title">{{ title }}</h1>
 </header>
 <main>
     <div class="articles">
         {% for item in collections.items | sort(attribute='data.year') %}
-            <article class="article-card articles__item">
-                <h2 class="article-card__title">{{ item.data.title }}</h2>
-                <div class="article-card__author">{{ item.data.author }}</div>
-                <div class="article-card__imprint">{{ item.data.publisher }}, {{ item.data.year }}</div>
+            {% set thumbSize = helpers.getThumbSize(item.data.format) %}
+            <article class="article articles__item">
+                <div class="article__thumb">
+                    <img class="article__img" src="assets/img/{{ item.fileSlug }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" alt="">
+                </div>
+                <h2 class="article__title">{{ item.data.title }}</h2>
+                {% if item.data.author %}<div class="article__author">{{ item.data.author }}</div>{% endif %}
+                <div class="article__imprint">{{ item.data.publisher }}, {{ item.data.year }}</div>
             </article>
         {% endfor %}
     </div>
