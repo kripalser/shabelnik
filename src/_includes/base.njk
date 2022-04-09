@@ -19,7 +19,8 @@
 <body>
 <header class="header">
     <a href="/" class="logo header__logo">
-        <h1 class="header__title">{{ pageTitle | safe }}</h1>
+        <img class="logo__image" src="/assets/img/logo.png" width="80" height="80" alt="Шарж на Евгения Шабельника">
+        <h1 class="logo__title">{{ pageTitle | safe }}</h1>
     </a>
 
     {% set navPages = collections.all | eleventyNavigation %}
