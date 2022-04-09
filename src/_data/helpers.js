@@ -16,8 +16,9 @@ const FORMATS_AND_SIZES = {
     '84x108/16': { width: 192, height: 255 },
     '84x108/32': { width: 123, height: 192 },
     '90x60/16':  { width: 205, height: 132 },
+    '24x18':     { width: 200, height: 150 },
 };
-const FORMAT_DEFAULT = '60×90/16';
+const FORMAT_DEFAULT = '24×18';
 
 module.exports = {
     getThumbSize(format = FORMAT_DEFAULT) {
