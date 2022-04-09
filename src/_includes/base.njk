@@ -18,18 +18,34 @@
 </head>
 <body>
 <header class="header">
-    <h1 class="header__title">{{ pageTitle | safe }}</h1>
+    <a href="/" class="logo header__logo">
+        <h1 class="header__title">{{ pageTitle | safe }}</h1>
+    </a>
+
+    {% set navPages = collections.all | eleventyNavigation %}
+    <nav class="menu header__menu">
+        <ul class="menu__list">
+            {% for entry in navPages %}
+                <li class="menu__item{% if entry.url == page.url %} menu__item--active{% endif %}">
+                    <a class="menu__link" href="{{ entry.url | url }}">{{ entry.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
 </header>
 <main>
     <div class="articles">
         {% for item in collections[collectionToRender] | sort(attribute='data.year') %}
-            {% set thumbSize = helpers.getThumbSize(item.data.format) %}
-            <article class="article articles__item">
-                <img class="article__thumb" src="/assets/img/collections/{{ item.data.tags[0] }}/{{ item.data.title | slugify }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" alt="{{ item.data.title }}{% if item.data.author %}. {{ item.data.author }}{% endif %}">
-                <h2 class="article__title">{{ item.data.title }}</h2>
-                {% if item.data.author %}<div class="article__author">{{ item.data.author }}</div>{% endif %}
-                <div class="article__imprint">{{ item.data.publisher }}, {{ item.data.year }}</div>
-            </article>
+            {# Don't render pages as items but keep them in `collections.all` for the navigation #}
+            {% if item.data.type != 'page' %}
+                {% set thumbSize = helpers.getThumbSize(item.data.format) %}
+                <article class="article articles__item">
+                    <img class="article__thumb" src="/assets/img/collections/{{ item.data.tags[0] }}/{{ item.data.title | slugify }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" alt="{{ item.data.title }}{% if item.data.author %}. {{ item.data.author }}{% endif %}">
+                    <h2 class="article__title">{{ item.data.title }}</h2>
+                    {% if item.data.author %}<div class="article__author">{{ item.data.author }}</div>{% endif %}
+                    <div class="article__imprint">{{ item.data.publisher }}, {{ item.data.year }}</div>
+                </article>
+            {% endif %}
         {% endfor %}
     </div>
 </main>

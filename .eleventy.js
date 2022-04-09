@@ -1,3 +1,4 @@
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const htmlMinifier = require('html-minifier');
 
 module.exports = (config) => {
@@ -21,6 +22,8 @@ module.exports = (config) => {
 
         return content;
     });
+
+    config.addPlugin(eleventyNavigationPlugin);
 
     return {
         dir: {
