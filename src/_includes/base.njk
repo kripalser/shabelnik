@@ -40,7 +40,7 @@
             {% if item.data.type != 'page' %}
                 {% set thumbSize = helpers.getThumbSize(item.data.format) %}
                 <article class="article articles__item">
-                    <img class="article__thumb" src="/assets/img/collections/{{ item.data.tags[0] }}/{{ item.data.title | slugify }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" alt="{{ item.data.title }}{% if item.data.author %}. {{ item.data.author }}{% endif %}">
+                    <img class="article__thumb" src="/assets/img/collections/{{ item.data.tags[0] }}/{{ item.data.title | slugify }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" loading="lazy" alt="{{ item.data.title }}{% if item.data.author %}. {{ item.data.author }}{% endif %}">
                     <h2 class="article__title">{{ item.data.title }}</h2>
                     {% if item.data.author %}<div class="article__author">{{ item.data.author }}</div>{% endif %}
                     <div class="article__imprint">{{ item.data.publisher }}, {{ item.data.year }}</div>
