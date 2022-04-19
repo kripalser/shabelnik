@@ -1,5 +1,5 @@
 ---
-title: Поэзия вокруг нас (La Poesie Autour de Nous), часть 1
+title: Поэзия вокруг нас (La Poesie Autour de Nous). Часть 1
 author: Э. М. Береговская
 publisher: Просвещение
 year: 1993
