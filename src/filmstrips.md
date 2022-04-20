@@ -1,5 +1,4 @@
 ---
-type: page
 title: Диафильмы
 pageTitle: Список диафильмов с&nbsp;иллюстрациями <br>Евгения Шабельника
 collectionToRender: filmstrips
