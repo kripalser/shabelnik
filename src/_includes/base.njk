@@ -34,7 +34,7 @@
         </ul>
     </nav>
 </header>
-<main>
+<main class="main">
     <div class="articles">
         {% for year, items in collections[collectionToRender] | groupby('data.year') %}
             {% for item in items | sort(attribute='fileSlug') %}
@@ -50,5 +50,8 @@
         {% endfor %}
     </div>
 </main>
+<footer class="footer">
+    <p class="footer__info">Список пополняется. Всего на сайте {{ helpers.pluralize(collections.items | length, ['издание', 'издания', 'изданий']) }} с работами художника.</p>
+</footer>
 </body>
 </html>
