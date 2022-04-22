@@ -1,6 +1,6 @@
 ---
-title: Диафильмы
-pageTitle: Список диафильмов с&nbsp;иллюстрациями <br>Евгения Шабельника
+title: Диафильмы с иллюстрациями <br>Евгения Шабельника
+description: Список диафильмов, проиллюстрированных Е. С. Шабельником.
 collectionToRender: filmstrips
 layout: base.njk
 eleventyNavigation:
