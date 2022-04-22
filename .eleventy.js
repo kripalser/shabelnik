@@ -39,6 +39,20 @@ module.exports = (config) => {
         return content;
     });
 
+    config.addFilter('typography', (value) => {
+        const noBreakSpace = '\u00A0';
+        const thinSpace = '\u2009';
+        const narrowNoBreakSpace = '\u202F';
+
+        return value
+            .replace(/([А-ЯЁ])\.\s/g, `$1.${narrowNoBreakSpace}`) // Initials
+            .replace(/№\s/g, `№${narrowNoBreakSpace}`) // Numero sign
+            .replace(/\s—\s/g, `${noBreakSpace}— `) // Em dash
+            .replace(/(?<!,)(\s)(\d+)\s?$/g, `${noBreakSpace}$2`) // Number at the end if not preceded by comma
+            .replace(/\s([a-zа-яё])\s/gi, ` $1${noBreakSpace}`) // One-letter words
+            ;
+    });
+
     config.addPlugin(eleventyNavigationPlugin);
 
     return {
