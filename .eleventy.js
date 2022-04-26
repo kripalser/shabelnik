@@ -48,7 +48,7 @@ module.exports = (config) => {
             .replace(/([А-ЯЁ])\.\s/g, `$1.${narrowNoBreakSpace}`) // Initials
             .replace(/№\s/g, `№${narrowNoBreakSpace}`) // Numero sign
             .replace(/\s—\s/g, `${noBreakSpace}— `) // Em dash
-            .replace(/(?<!,)(\s)(\d+)\s?$/g, `${noBreakSpace}$2`) // Number at the end if not preceded by comma
+            .replace(/(?<![,№])(\s)(\d+)\s?$/g, `${noBreakSpace}$2`) // Number at the end if not preceded by comma or numero sign
             .replace(/\s([a-zа-яё])\s/gi, ` $1${noBreakSpace}`) // One-letter words
             ;
     });
