@@ -52,7 +52,7 @@
     </div>
 </main>
 <footer class="footer">
-    <p class="footer__info">Коллекция пополняется. Всего на сайте {{ helpers.pluralize(collections.items | length, ['издание', 'издания', 'изданий']) | safe }}.</p>
+    <p class="footer__info">Коллекция пополняется. Всего на сайте {{ helpers.pluralize(collections.items | length, ['издание', 'издания', 'изданий']) | safe }}: {{ helpers.pluralize(collections.books | length, ['книга', 'книги', 'книг']) | safe }}, {{ helpers.pluralize(collections.magazines | length, ['журнал', 'журнала', 'журналов']) | safe }} и {{ helpers.pluralize(collections.filmstrips | length, ['диафильм', 'диафильма', 'диафильмов']) | safe }}.</p>
 </footer>
 </body>
 </html>
