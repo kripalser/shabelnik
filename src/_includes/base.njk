@@ -46,6 +46,13 @@
                     <h2 class="article__title">{{ title | typography }}</h2>
                     {% if item.data.author %}<div class="article__author">{{ item.data.author | typography }}</div>{% endif %}
                     <div class="article__imprint">{{ item.data.publisher if item.data.issue else [item.data.publisher, ', ', item.data.year] | join }}</div>
+                    {% if item.data.status %}
+                        <div class="article__status">
+                            {% for status in helpers.getStatuses() %}
+                                <div class="article__status-item{{ ' article__status-item--checked' if status in item.data.status }}"></div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </article>
             {% endfor %}
         {% endfor %}
