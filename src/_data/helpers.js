@@ -5,6 +5,7 @@ const FORMATS_AND_SIZES = {
     '60x84/32':      { width:  95, height: 130 },
     '60x90/8':       { width: 205, height: 275 },
     '60x90/16':      { width: 132, height: 205 },
+    '70x100/8':      { width: 235, height: 320 }, // Taken from https://fantlab.ru/edition313539
     '70x100/16':     { width: 158, height: 230 },
     '70x100/32':     { width: 112, height: 158 },
     '70x108/8':      { width: 257, height: 333 },
