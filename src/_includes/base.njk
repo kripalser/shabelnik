@@ -48,8 +48,8 @@
                     <div class="article__imprint">{{ item.data.publisher if item.data.issue else [item.data.publisher, ', ', item.data.year] | join }}</div>
                     {% if item.data.status %}
                         <div class="article__status">
-                            {% for status in helpers.getStatuses() %}
-                                <div class="article__status-item{{ ' article__status-item--checked' if status in item.data.status }}"></div>
+                            {% for status in item.data.status %}
+                                <div class="article__status-item">{{ helpers.getStatus(status) }}</div>
                             {% endfor %}
                         </div>
                     {% endif %}

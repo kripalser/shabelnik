@@ -23,21 +23,21 @@ const FORMATS_AND_SIZES = {
 };
 const FORMAT_DEFAULT = '24×18';
 
-const STATUSES = [
-    'found', // Someone else's scan has been found
-    'purchased', // Purchased, but not delivered yet
-    'owned', // In possession
-    'scanned', // Scanned but not processed yet
-    'processed', // Ready to be added to the website
-];
+const STATUSES = {
+    found: 'Найдено', // Someone else's scan has been found
+    purchased: 'Куплено', // Purchased, but not delivered yet
+    owned: 'Есть в наличии', // In possession
+    scanned: 'Отсканировано', // Scanned but not processed yet
+    processed: 'Обработано', // Ready to be added to the website
+};
 
 module.exports = {
     getThumbSize(format = FORMAT_DEFAULT) {
         return FORMATS_AND_SIZES[format.replace('×', 'x')];
     },
 
-    getStatuses() {
-        return STATUSES;
+    getStatus(status) {
+        return STATUSES[status];
     },
 
     // https://gist.github.com/znechai/1b25d0ee9a92e5b879175ab4f040dbbc
