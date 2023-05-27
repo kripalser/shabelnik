@@ -53,6 +53,14 @@ module.exports = (config) => {
             ;
     });
 
+    // https://rob.cogit8.org/posts/2020-10-28-simple-11ty-cache-busting/
+    config.addFilter('bust', (url) => {
+        const [urlPart, paramPart] = url.split('?');
+        const params = new URLSearchParams(paramPart || '');
+        params.set('v', Math.floor(Date.now() / 1000).toString());
+        return `${urlPart}?${params}`;
+    });
+
     config.addPlugin(eleventyNavigationPlugin);
 
     return {
