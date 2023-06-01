@@ -42,7 +42,7 @@
                 {% set thumbSize = helpers.getThumbSize(item.data.format) %}
                 {% set title = [item.data.title, ' № ', item.data.issue, ', ', item.data.year] | join if item.data.issue else item.data.title %}
                 <article class="article articles__item">
-                    <img class="article__thumb" src="/assets/img/collections/{{ item.data.tags[0] }}/{{ title | slugify }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" loading="lazy" alt="{{ title }}{% if item.data.author %}, {{ item.data.author }}{% endif %}">
+                    <img class="article__thumb" src="/assets/img/collections/{{ item.data.tags[0] }}/{{ title | slugify }}-thumb.jpg" width="{{ thumbSize.width }}" height="{{ thumbSize.height }}" loading="lazy" alt="">
                     <h2 class="article__title">{{ title | typography }}</h2>
                     {% if item.data.author %}<div class="article__author">{{ item.data.author | typography }}</div>{% endif %}
                     <div class="article__imprint">{{ item.data.publisher if item.data.issue else [item.data.publisher, ', ', item.data.year] | join }}</div>
