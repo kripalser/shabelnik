@@ -1,0 +1,32 @@
+---
+import logo from '/assets/img/logo.png';
+
+import { links } from '@data/links';
+import { adjustTypography } from '@utils';
+
+export interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+
+const { nav } = links;
+const menu = [nav.books, nav.magazines, nav.filmstrips];
+const url = new URL(Astro.request.url);
+---
+
+<header class="header">
+    <a href="/" class="logo header__logo">
+        <img class="logo__image" src={logo} width="80" height="80" alt="Евгений Шабельник">{/* Todo: move to some file */}
+        <h1 class="logo__title" set:html={adjustTypography(title)}></h1>
+    </a>
+    <nav class="menu header__menu">
+        <ul class="menu__list">
+            {menu.map((item) => (
+                <li class:list={['menu__item', { 'menu__item--active': url.pathname === item.url }]}>
+                    <a class="menu__link" href={item.url}>{item.label}</a>
+                </li>
+            ))}
+        </ul>
+    </nav>
+</header>

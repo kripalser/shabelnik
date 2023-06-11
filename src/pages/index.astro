@@ -1,0 +1,33 @@
+---
+import { seo } from '@data/seo';
+
+import Layout from '@layouts/Base.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import Thumb from '@components/Thumb.astro';
+
+const { title, description } = seo.index;
+
+import { getCollection } from 'astro:content';
+
+// Todo: should be imported from somewhere to avoid calling this on each page?
+const books = (await getCollection('books'));
+const magazines = (await getCollection('magazines'));
+const filmstrips = (await getCollection('filmstrips'));
+const items = [...books, ...magazines, ...filmstrips].sort(
+    (a, b) => a.data.year.valueOf() - b.data.year.valueOf()
+);
+---
+
+<Layout title={title.replace('<br>', '')} description={description}>
+    <Header title={title} />
+    <main class="main">
+        <div class="articles">
+            {items.map((item) => (
+                <Thumb item={item} />
+            ))}
+        </div>
+    </main>
+    {/* Todo: should be in `Base`? */}
+    <Footer />
+</Layout>

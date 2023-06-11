@@ -1,0 +1,32 @@
+---
+import '@assets/styles/style.scss';
+
+import { config } from '@config';
+
+export interface Props {
+    title: string;
+}
+
+const { title, description } = Astro.props;
+const { language } = config;
+---
+
+<!doctype html>
+<html lang={language}>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description}>
+
+    <link rel="icon" href="/assets/img/favicon/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/assets/img/favicon/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<slot />
+</body>
+</html>

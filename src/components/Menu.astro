@@ -1,0 +1,33 @@
+---
+import { Link } from '@types';
+
+import MenuLink from '@components/MenuLink.astro';
+
+export interface Props {
+    class: 'string';
+    items: Link[];
+}
+
+const { class: className, items } = Astro.props;
+---
+
+<ul class:list={['navbar-nav', className]}>
+    {items.map((item) => (
+        item.children ? (
+            <li class="nav-item dropdown">
+                <MenuLink item={item} hasChildren={true} />
+                <ul class="dropdown-menu">
+                    {item.children.map((child) => (
+                        <li class="dropdown-item">
+                            <MenuLink item={child} />
+                        </li>
+                    ))}
+                </ul>
+            </li>
+        ) : (
+            <li class="nav-item">
+                <MenuLink item={item} />
+            </li>
+        )
+    ))}
+</ul>
