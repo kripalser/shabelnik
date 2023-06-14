@@ -1,0 +1,29 @@
+---
+import { adjustTypography, getSlug, getStatus, getThumbSize } from '@utils';
+
+export interface Props {
+    item: any; // Todo: https://docs.astro.build/en/reference/api-reference/#collection-entry-type
+}
+
+const { item } = Astro.props;
+
+const thumbSize = getThumbSize(item.data.format);
+const fullTitle = item.data.issue ? `${item.data.title} № ${item.data.issue}, ${item.data.year}` : item.data.title;
+---
+
+<article class="article articles__item">
+    <img class="article__thumb" src=`/assets/img/collections/${item.collection}/${getSlug(fullTitle)}-thumb.jpg` width={thumbSize.width} height={thumbSize.height} loading="lazy" alt="">
+    <h2 class="article__title">{adjustTypography(fullTitle)}</h2>
+    {item.data.author ? (
+        <div class="article__author">{adjustTypography(item.data.author)}</div>
+    ) : null}
+    <div class="article__imprint">{item.data.issue ? item.data.publisher : `${item.data.publisher}, ${item.data.year}`}</div>
+    {item.data.status ? (
+        <div class="article__status">
+            {item.data.status.map((status) => (
+                /* Todo: format status */
+                <div class="article__status-item">{getStatus(status)}</div>
+            ))}
+        </div>
+    ) : null}
+</article>

@@ -1,0 +1,23 @@
+---
+export interface Props {
+    date: Date;
+}
+
+const { date } = Astro.props;
+---
+
+{/* https://github.com/withastro/astro/blob/main/examples/blog/src/components/FormattedDate.astro */}
+{/* See also https://github.com/onwidget/astrowind/blob/main/src/utils/utils.ts */}
+
+{/* Todo: add class prop */}
+{/* Todo: add format prop? */}
+
+<time datetime={date.toISOString()}>
+    {
+        date.toLocaleDateString('en-us', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+        })
+    }
+</time>
