@@ -8,40 +8,17 @@ const links: Links = {
         },
         books: {
             label: 'Книги',
-            url: '/books',
+            url: '/books/',
         },
         magazines: {
             label: 'Журналы',
-            url: '/magazines',
+            url: '/magazines/',
         },
         filmstrips: {
             label: 'Диафильмы',
-            url: '/filmstrips',
+            url: '/filmstrips/',
         },
     },
-    shop: {
-        account: {
-            label: 'Account',
-            url: '/shop/account',
-        },
-    },
-    social: {
-        facebook: {
-            label: 'Facebook',
-            labelShort: 'Fb',
-            url: 'https://facebook.com',
-        },
-        twitter: {
-            label: 'Twitter',
-            labelShort: 'Tw',
-            url: 'https://twitter.com',
-        },
-    },
-};
-
-links.nav.pages = {
-    label: 'Pages',
-    children: [links.nav.about, links.nav.contact],
 };
 
 export { links };
