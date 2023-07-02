@@ -6,6 +6,7 @@ const formats: Formats = {
     '60x84/16':      { width: 130, height: 195 },
     '60x84/32':      { width:  95, height: 130 },
     '60x90/8':       { width: 205, height: 275 },
+    '60x92/8':       { width: 225, height: 292 }, // https://www31.ru/book/edition-format/234-prakticheski-primenjaemye-formaty-izdanijj.html
     '60x90/16':      { width: 132, height: 205 },
     '70x100/8':      { width: 235, height: 320 }, // Taken from https://fantlab.ru/edition313539
     '70x100/16':     { width: 158, height: 230 },
