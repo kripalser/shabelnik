@@ -12,6 +12,7 @@ export const collections = {
             author: z.string().optional(),
             publisher: z.string(),
             year: year,
+            edition: z.number().optional(),
             isbn: z.string().optional(),
             format: z.string(),
             status: z.array(z.string()).optional(),

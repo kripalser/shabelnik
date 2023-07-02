@@ -1,3 +1,3 @@
 export { getSlug } from './slugs';
-export { getStatus, getThumbSize } from './thumbs';
+export { getStatus, getThumb } from './thumbs';
 export { adjustTypography, pluralize } from './text';
