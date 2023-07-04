@@ -3,6 +3,7 @@ title: Поэзия вокруг нас (La Poesie Autour de Nous). Часть 1
 author: Э. М. Береговская
 publisher: Просвещение
 year: 1993
+edition: 2
 isbn: 5-09-002990-3
 format: 70×90/16
 ---
