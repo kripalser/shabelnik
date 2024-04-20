@@ -1,0 +1,37 @@
+---
+import type { GetStaticPathsItem } from 'astro';
+
+import Layout from '@layouts/Base.astro';
+import Articles from '@components/Articles.astro';
+
+import { seo } from '@data/seo';
+import { links } from '@data/links';
+import { collections, getSlug } from '@utils';
+
+export async function getStaticPaths() {
+    return Object.keys(links.nav).reduce((accumulator: GetStaticPathsItem[], key) => {
+        key !== 'index' && accumulator.push({
+            params: { slug: links.nav[key].url },
+            props: {
+                collection: key,
+                items: collections[key as keyof typeof collections].all,
+                title: links.nav[key].label,
+                slug: links.nav[key].url,
+                years: [],
+            },
+        });
+        return accumulator;
+    }, []);
+}
+
+const { slug } = Astro.params;
+const page = Astro.props;
+
+const { title, description } = seo[slug || 'index'];
+---
+
+<Layout title={title} description={description}>
+    {collections[page.collection as keyof typeof collections].grouped.map((group) => (
+        <Articles items={group.items} slug={getSlug(group.title)} title={`${group.title} <br>${group.years[0]}—${group.years[group.years.length - 1]}`} />
+    ))}
+</Layout>

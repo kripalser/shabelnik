@@ -1,15 +1,83 @@
 ---
-import '@assets/styles/style.scss';
+import { getCollection } from 'astro:content';
+
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 
 import { config } from '@config';
 
 export interface Props {
     title: string;
+    description: string;
 }
+
+const books = (await getCollection('books'));
+const magazines = (await getCollection('magazines'));
+const filmstrips = (await getCollection('filmstrips'));
+const collections = [...books, ...magazines, ...filmstrips];
 
 const { title, description } = Astro.props;
 const { language } = config;
 ---
+
+<style lang="scss" is:global>
+    :root {
+        --color-accent: #e24c4c;
+        --color-background: #f8f6f1;
+        --color-thumb-placeholder: rgba(0, 0, 0, .05);
+        --color-text: rgb(0, 0, 0);
+        --color-text-muted: rgba(0, 0, 0, .5);
+        --color-divider: var(--color-text);
+        --width-divider: 1px;
+        --width-divider-lg: 6px;
+        --space-body-x: 1.5rem;
+        --space-body-y: 1.5rem;
+        --space-header-gap: .25rem;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        padding: var(--space-body-x);
+        margin: 0;
+        font-family: sans-serif;
+        font-size: .875rem;
+        line-height: 1.2;
+        color: var(--color-text);
+        background-color: var(--color-background);
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            color: var(--color-accent);
+        }
+    }
+
+    [id] {
+        scroll-margin-top: 1rem;
+    }
+</style>
+
+<style lang="scss">
+    .layout {
+        display: flex;
+        flex-direction: column;
+        max-width: 1600px;
+        min-height: calc(100vh - var(--space-body-x) * 2);
+        margin: 0 auto;
+    }
+
+    main {
+        flex: 1 0 auto;
+    }
+</style>
 
 <!doctype html>
 <html lang={language}>
@@ -27,6 +95,12 @@ const { language } = config;
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-<slot />
+<div class="layout">
+    <Header title={title} collections={collections} />
+    <main>
+        <slot />
+    </main>
+    <Footer />
+</div>
 </body>
 </html>

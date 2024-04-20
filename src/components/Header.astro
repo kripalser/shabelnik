@@ -1,32 +1,180 @@
 ---
-import logo from '/assets/img/logo.png?url';
+import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
+import type { Link } from '@types';
 
 import { links } from '@data/links';
-import { adjustTypography } from '@utils';
+import { adjustTypography, pluralize } from '@utils';
 
 export interface Props {
     title: string;
+    collections: CollectionEntry<ContentCollectionKey>[];
 }
 
-const { title } = Astro.props;
+const { title, collections } = Astro.props;
 
-const { nav } = links;
-const menu = [nav.books, nav.magazines, nav.filmstrips];
 const url = new URL(Astro.request.url);
+const menu = Object.keys(links.nav).reduce((accumulator: Link[], key) => {
+    key !== 'index' && accumulator.push(links.nav[key]);
+    return accumulator;
+}, []);
 ---
 
-<header class="header">
-    <a href="/" class="logo header__logo">
-        <img class="logo__image" src={logo} width="80" height="80" alt="Евгений Шабельник">{/* Todo: move to some file */}
-        <h1 class="logo__title" set:html={adjustTypography(title)}></h1>
+<style lang="scss">
+    header {
+        display: grid;
+        padding: var(--space-header-gap);
+        font-size: .625rem;
+        font-weight: 700;
+        text-align: center;
+        border: var(--width-divider) solid var(--color-divider);
+        grid-template-areas:
+            "logo title"
+            "menu menu";
+        grid-template-columns:
+            25% 1fr
+            auto;
+
+        @media (min-width: 576px) {
+            font-size: .75rem;
+        }
+
+        @media (min-width: 768px) {
+            font-size: .875rem;
+        }
+
+        @media (min-width: 992px) {
+            grid-template:
+                "logo title stats"
+                "logo menu stats";
+            grid-template-columns:
+                15% 1fr 15%;
+        }
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: .5rem;
+        margin-left: calc(var(--space-header-gap) * -1);
+        border-right: var(--width-divider) solid var(--color-divider);
+        grid-area: logo;
+
+        @media (min-width: 576px) {
+            padding: 1rem;
+        }
+
+        img {
+            height: auto;
+            max-width: 6rem;
+
+            @media (min-width: 992px) {
+                max-width: 8rem;
+            }
+        }
+    }
+
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        margin: 0 calc(var(--space-header-gap) * -1) 0 0;
+        font-size: inherit;
+        grid-area: title;
+
+        @media (min-width: 992px) {
+            margin: 0;
+        }
+    }
+
+    .menu {
+        padding-top: var(--space-header-gap);
+        margin-top: var(--space-header-gap);
+        border-top: var(--width-divider) solid var(--color-divider);
+        grid-area: menu;
+        flex-grow: 1;
+
+        @media (min-width: 992px) {
+            margin-right: var(--space-header-gap);
+            margin-left: var(--space-header-gap);
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 0;
+            margin: 0 calc(var(--space-header-gap) * -1);
+            text-transform: uppercase;
+            list-style: none;
+
+            @media (min-width: 992px) {
+                margin: 0;
+            }
+
+            li {
+                height: 100%;
+                flex-grow: 1;
+
+                &:not(:last-child) {
+                    border-right: var(--width-divider) solid var(--color-divider);
+                }
+
+                &.active {
+                    color: var(--color-accent);
+                }
+
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    padding: .5rem;
+                }
+            }
+        }
+    }
+
+    .stats {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: calc(var(--space-header-gap) * -1);
+        border-left: var(--width-divider) solid var(--color-divider);
+        grid-area: stats;
+
+        @media (min-width: 992px) {
+            display: flex;
+        }
+    }
+
+    .number {
+        font-size: 2rem;
+        font-weight: 900;
+        line-height: 1;
+        color: var(--color-accent);
+    }
+</style>
+
+<header>
+    <a class="logo" href="/">
+        <img src="/assets/img/logo.svg" width="300" height="160" alt="Евгений Шабельник">
     </a>
-    <nav class="menu header__menu">
-        <ul class="menu__list">
-            {menu.map((item) => (
-                <li class:list={['menu__item', { 'menu__item--active': url.pathname === item.url }]}>
-                    <a class="menu__link" href={item.url}>{item.label}</a>
-                </li>
-            ))}
+    <nav class="menu">
+        <ul>
+            {menu.map((item) => {
+                const isActive = url.pathname === item.url || url.pathname.startsWith(`${item.url}`);
+                return (<li class:list={['item', { active: isActive }]}><a href={item.url}>{item.label}</a></li>);
+            })}
         </ul>
     </nav>
+    <h1 class="title" set:html={adjustTypography(title)}></h1>
+    <div class="stats">
+        <div>Нашлось</div>
+        <div class="number">{collections.length}</div>
+        <div set:html={`${pluralize(collections.length, ['издание', 'издания', 'изданий'], false)}`}></div>
+    </div>
 </header>

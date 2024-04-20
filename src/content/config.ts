@@ -18,11 +18,4 @@ export const collections = {
             status: z.array(z.string()).optional(),
         }),
     }),
-    // work: defineCollection({
-    //     schema: z.object({
-    //         title: z.string(),
-    //         date: z.date(),
-    //         tags: z.array(z.string()),
-    //     }),
-    // }),
 };

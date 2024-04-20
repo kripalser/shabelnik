@@ -1,12 +1,27 @@
+import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
+
 export type Config = {
     language: string;
 };
 
+export type CollectionGroup = {
+    collection: string;
+    items: CollectionEntry<ContentCollectionKey>[];
+    merged?: boolean;
+    title: string;
+    slug: string;
+    years: number[];
+};
+
+export type GroupedCollection = {
+    all: CollectionEntry<ContentCollectionKey>[];
+    grouped: CollectionGroup[];
+};
+
 export type Link = {
     label: string;
-    labelShort?: string;
-    external?: boolean;
-} & ({ url: string, children?: never } | { children: Link[], url?: never }); // Either `url` or `children`, but not both
+    url: string;
+};
 
 export type Links = {
     [key: string]: { [key: string]: Link };

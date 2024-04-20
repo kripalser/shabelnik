@@ -9,6 +9,27 @@ const filmstrips = (await getCollection('filmstrips'));
 const items = [...books, ...magazines, ...filmstrips];
 ---
 
-<footer class="footer">
-    <p class="footer__info" set:html={`Всего на сайте ${pluralize(items.length, ['издание', 'издания', 'изданий'])}: ${pluralize(books.length, ['книга', 'книги', 'книг'])}, ${pluralize(magazines.length, ['журнал', 'журнала', 'журналов'])} и ${pluralize(filmstrips.length, ['диафильм', 'диафильма', 'диафильмов'])}. Чего-то не хватает? <a href="mailto:kripalser@ya.ru?subject=Знаю, что ещё проиллюстрировал Евгений Шабельник!">Напишите мне</a>.`}></p>
+<style lang="scss">
+    footer {
+        padding: 1rem;
+        font-weight: 700;
+        text-align: center;
+        border: var(--width-divider) solid var(--color-divider);
+
+        a {
+            color: var(--color-accent);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+</style>
+
+<footer>
+    <div class="container">
+        {/* Can't style dynamically generated elements: https://github.com/withastro/astro/issues/4380 */}
+        <span set:html={`Всего на сайте ${pluralize(items.length, ['издание', 'издания', 'изданий'])}: ${pluralize(books.length, ['книга', 'книги', 'книг'])}, ${pluralize(magazines.length, ['журнал', 'журнала', 'журналов'])} и ${pluralize(filmstrips.length, ['диафильм', 'диафильма', 'диафильмов'])}.`}></span>
+        <span>Чего-то не хватает? <a href="mailto:kripalser@ya.ru?subject=Знаю, что ещё проиллюстрировал Евгений Шабельник!">Напишите мне</a>.</span>
+    </div>
 </footer>

@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
+
+import Article from './Article.astro';
+
+export interface Props {
+    items: CollectionEntry<ContentCollectionKey>[];
+    slug: string;
+    title: string;
+}
+
+const { items, slug, title } = Astro.props;
+---
+
+<style lang="scss">
+    .section {
+        margin: 2rem 0;
+
+        &:not(:first-child) {
+            padding-top: 2rem;
+            border-top: var(--width-divider) solid var(--color-divider);
+        }
+
+        @media (min-width: 1280px) {
+            display: grid;
+            grid-template-columns: 20% auto;
+            grid-gap: 2rem;
+        }
+    }
+
+    .heading {
+        margin: 0 0 1rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .articles {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: baseline;
+        margin: -1.5rem -1rem;
+    }
+</style>
+
+<section class="section">
+    <h2 class="heading" id={slug} set:html={title}></h2>
+    <div class="articles">
+        {items.map((item) => (
+            <Article item={item} />
+        ))}
+    </div>
+</section>

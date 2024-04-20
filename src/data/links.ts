@@ -18,6 +18,10 @@ const links: Links = {
             label: 'Диафильмы',
             url: '/filmstrips/',
         },
+        // aids: {
+        //     label: 'Пособия',
+        //     url: '/aids/',
+        // },
     },
 };
 

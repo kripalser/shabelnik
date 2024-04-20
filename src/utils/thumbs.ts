@@ -1,14 +1,14 @@
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
 
 import { getSlug } from '@utils';
 import { formats, formatDefault } from '@data/formats';
 import { statuses } from '@data/statuses';
 
-const getFullTitle = (item: CollectionEntry<any>) => {
+const getFullTitle = (item: CollectionEntry<ContentCollectionKey>) => {
     return item.data.issue ? `${item.data.title} № ${item.data.issue}, ${item.data.year}` : item.data.title;
 };
 
-const getImagePath = (item: CollectionEntry<any>) => {
+const getImagePath = (item: CollectionEntry<ContentCollectionKey>) => {
     const editionYear = item.data.edition ? `-${item.data.year}` : '';
     return `/assets/img/collections/${item.collection}/${getSlug(getFullTitle(item)) + editionYear}-thumb.jpg`;
 };
@@ -24,7 +24,7 @@ export const getStatus = (status: string) => {
 };
 
 // Todo: add type
-export const getThumb = (item: CollectionEntry<any>) => {
+export const getThumb = (item: CollectionEntry<ContentCollectionKey>) => {
     return {
         title: getFullTitle(item),
         image: {
