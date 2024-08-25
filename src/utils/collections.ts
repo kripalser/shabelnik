@@ -14,6 +14,10 @@ const composeSlug = (title: string): string => {
     return `/${getSlug(title)}/`;
 };
 
+export const getYearsRange = (years: number[]) => {
+    return years.length > 1 ? `${years[0]}—${years[years.length - 1]}` : years[0];
+};
+
 const sortCollection = (collection: CollectionEntry<ContentCollectionKey>[]) => {
     return collection.sort((a: CollectionEntry<ContentCollectionKey>, b: CollectionEntry<ContentCollectionKey>) => a.data.year.valueOf() - b.data.year.valueOf());
 }

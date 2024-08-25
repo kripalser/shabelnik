@@ -6,7 +6,7 @@ import Articles from '@components/Articles.astro';
 
 import { seo } from '@data/seo';
 import { links } from '@data/links';
-import { collections, getSlug } from '@utils';
+import { collections, getSlug, getYearsRange } from '@utils';
 
 export async function getStaticPaths() {
     return Object.keys(links.nav).reduce((accumulator: GetStaticPathsItem[], key) => {
@@ -32,6 +32,6 @@ const { title, description } = seo[slug || 'index'];
 
 <Layout title={title} description={description}>
     {collections[page.collection as keyof typeof collections].grouped.map((group) => (
-        <Articles items={group.items} slug={getSlug(group.title)} title={`${group.title} <br>${group.years[0]}—${group.years[group.years.length - 1]}`} />
+        <Articles items={group.items} slug={getSlug(group.title)} title={`${group.title} <br>${getYearsRange(group.years)}`} />
     ))}
 </Layout>

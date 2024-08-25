@@ -1,7 +1,7 @@
 ---
 import type { CollectionGroup } from '../types';
 
-import { getSlug } from '@utils';
+import { getSlug, getYearsRange } from '@utils';
 
 export interface Props {
     item: CollectionGroup;
@@ -33,6 +33,6 @@ const { item } = Astro.props;
 </style>
 
 <a class="item" href={`/${item.collection}/#${getSlug(item.title)}`}>
-    <span class="title">{item.title}<br>{`${item.years[0]}—${item.years[item.years.length - 1]}`}</span>
+    <span class="title">{item.title}<br>{`${getYearsRange(item.years)}`}</span>
     <span class="number">{item.items.length}</span>
 </a>
