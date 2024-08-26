@@ -4,7 +4,7 @@ author: Роберт Макклоски
 publisher: Просвещение
 year: 1977
 series: Читаем по-английски
-format: 84x108/32
+format: 84×108/32
 status:
   - scanned
   - pictures
