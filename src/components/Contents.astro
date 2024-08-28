@@ -29,15 +29,21 @@ import { collections } from '@utils';
         }
     }
 
+    .section {
+        &--extra {
+            margin-top: 1.5rem;
+
+            @media (min-width: 992px) {
+                margin-top: 3rem;
+            }
+        }
+    }
+
     .title {
         margin: 0 0 1rem;
         font-size: 1.5rem;
         font-weight: 700;
         text-transform: uppercase;
-
-        @media (min-width: 992px) {
-            margin: 0 0 2.5rem;
-        }
 
         a {
             color: inherit;
@@ -102,8 +108,15 @@ import { collections } from '@utils';
                 ))}
             </ul>
         </div>
-        <!--<div class="section">
-            <h2 class="title">Пособия</h2>
-        </div>-->
+        <div class="section section--extra">
+            <h2 class="title"><a href={links.nav.aids.url}>Пособия</a></h2>
+            <ul class="list">
+                {collections.aids.grouped.map((item) => (
+                    <li class="list-item">
+                        <ContentsItem item={item} />
+                    </li>
+                ))}
+            </ul>
+        </div>
     </div>
 </div>

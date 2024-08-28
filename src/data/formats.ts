@@ -23,6 +23,9 @@ const formats: Formats = {
     '90x60/16':      { width: 205, height: 132 },
     '108x84/16':     { width: 255, height: 192 },
     '24x18':         { width: 200, height: 150 },
+    '56x44':         { width: 186, height: 146 },
+    '87x58':         { width: 290, height: 193 },
+    '58x87':         { width: 193, height: 290 },
 };
 
 const formatDefault: string = '24×18';

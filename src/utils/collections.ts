@@ -80,11 +80,19 @@ const groupCollection = ({ collection, key, merge }: { collection: CollectionEnt
     return sortCollectionGroups(result);
 };
 
+const aids = await getCollection('aids');
 const books = await getCollection('books');
 const filmstrips = await getCollection('filmstrips');
 const magazines = await getCollection('magazines');
 
 export const collections: { [K in ContentCollectionKey]: GroupedCollection } = {
+    aids: {
+        all: aids,
+        grouped: groupCollection({
+            collection: aids,
+            key: 'publisher',
+        }),
+    },
     books: {
         all: books,
         grouped: groupCollection({
