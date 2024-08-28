@@ -1,12 +1,7 @@
 ---
-import { pluralize } from '@utils';
+import { collections, pluralize } from '@utils';
 
-import { getCollection } from 'astro:content';
-
-const books = (await getCollection('books'));
-const magazines = (await getCollection('magazines'));
-const filmstrips = (await getCollection('filmstrips'));
-const items = [...books, ...magazines, ...filmstrips];
+const items = [...collections.aids.all, ...collections.books.all, ...collections.magazines.all, ...collections.filmstrips.all];
 ---
 
 <style lang="scss">
@@ -29,7 +24,7 @@ const items = [...books, ...magazines, ...filmstrips];
 <footer>
     <div class="container">
         {/* Can't style dynamically generated elements: https://github.com/withastro/astro/issues/4380 */}
-        <span set:html={`Всего на сайте ${pluralize(items.length, ['издание', 'издания', 'изданий'])}: ${pluralize(books.length, ['книга', 'книги', 'книг'])}, ${pluralize(magazines.length, ['журнал', 'журнала', 'журналов'])} и ${pluralize(filmstrips.length, ['диафильм', 'диафильма', 'диафильмов'])}.`}></span>
+        <span set:html={`Всего на сайте ${pluralize(items.length, ['издание', 'издания', 'изданий'])}: ${pluralize(collections.books.all.length, ['книга', 'книги', 'книг'])}, ${pluralize(collections.magazines.all.length, ['журнал', 'журнала', 'журналов'])}, ${pluralize(collections.filmstrips.all.length, ['диафильм', 'диафильма', 'диафильмов'])} и ${pluralize(collections.aids.all.length, ['учебное пособие', 'учебных пособия', 'учебных пособий'])}.`}></span>
         <span>Чего-то не хватает? <a href="mailto:kripalser@ya.ru?subject=Знаю, что ещё проиллюстрировал Евгений Шабельник!">Напишите мне</a>.</span>
     </div>
 </footer>

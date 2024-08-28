@@ -1,20 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
-
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 
 import { config } from '@config';
+import { collections } from '@utils';
 
 export interface Props {
     title: string;
     description: string;
 }
 
-const books = (await getCollection('books'));
-const magazines = (await getCollection('magazines'));
-const filmstrips = (await getCollection('filmstrips'));
-const collections = [...books, ...magazines, ...filmstrips];
+const items = [...collections.aids.all, ...collections.books.all, ...collections.magazines.all, ...collections.filmstrips.all];
 
 const { title, description } = Astro.props;
 const { language } = config;
@@ -96,7 +92,7 @@ const { language } = config;
 </head>
 <body>
 <div class="layout">
-    <Header title={title} collections={collections} />
+    <Header title={title} items={items} />
     <main>
         <slot />
     </main>

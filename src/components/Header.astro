@@ -7,10 +7,10 @@ import { adjustTypography, pluralize } from '@utils';
 
 export interface Props {
     title: string;
-    collections: CollectionEntry<ContentCollectionKey>[];
+    items: CollectionEntry<ContentCollectionKey>[];
 }
 
-const { title, collections } = Astro.props;
+const { title, items } = Astro.props;
 
 const url = new URL(Astro.request.url);
 const menu = Object.keys(links.nav).reduce((accumulator: Link[], key) => {
@@ -174,7 +174,7 @@ const menu = Object.keys(links.nav).reduce((accumulator: Link[], key) => {
     <h1 class="title" set:html={adjustTypography(title)}></h1>
     <div class="stats">
         <div>Нашлось</div>
-        <div class="number">{collections.length}</div>
-        <div set:html={`${pluralize(collections.length, ['издание', 'издания', 'изданий'], false)}`}></div>
+        <div class="number">{items.length}</div>
+        <div set:html={`${pluralize(items.length, ['издание', 'издания', 'изданий'], false)}`}></div>
     </div>
 </header>
