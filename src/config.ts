@@ -1,5 +1,5 @@
-import type { Config } from '@types';
+import type { Config } from "@types";
 
 export const config: Config = {
-    language: 'ru',
+  language: "ru",
 };

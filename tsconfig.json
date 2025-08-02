@@ -1,8 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
   "compilerOptions": {
     "baseUrl": ".",
-    // https://www.typescriptlang.org/tsconfig#paths
     "paths": {
       "@*": ["src/*"]
     }

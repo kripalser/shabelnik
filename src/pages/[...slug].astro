@@ -1,33 +1,35 @@
 ---
-import type { GetStaticPathsItem } from 'astro';
-
-import Layout from '@layouts/Base.astro';
-import Articles from '@components/Articles.astro';
-
-import { seo } from '@data/seo';
-import { links } from '@data/links';
-import { collections, getSlug, getYearsRange } from '@utils';
+import Articles from "@components/Articles.astro";
+import { links } from "@data/links";
+import { seo } from "@data/seo";
+import Layout from "@layouts/Layout.astro";
+import { collections, getSlug, getYearsRange } from "@utils";
+import type { GetStaticPathsItem } from "astro";
 
 export async function getStaticPaths() {
-    return Object.keys(links.nav).reduce((accumulator: GetStaticPathsItem[], key) => {
-        key !== 'index' && accumulator.push({
-            params: { slug: links.nav[key].url },
-            props: {
-                collection: key,
-                items: collections[key as keyof typeof collections].all,
-                title: links.nav[key].label,
-                slug: links.nav[key].url,
-                years: [],
-            },
+  return Object.keys(links.nav).reduce(
+    (accumulator: GetStaticPathsItem[], key) => {
+      key !== "index" &&
+        accumulator.push({
+          params: { slug: links.nav[key].url },
+          props: {
+            collection: key,
+            items: collections[key as keyof typeof collections].all,
+            title: links.nav[key].label,
+            slug: links.nav[key].url,
+            years: [],
+          },
         });
-        return accumulator;
-    }, []);
+      return accumulator;
+    },
+    [],
+  );
 }
 
 const { slug } = Astro.params;
 const page = Astro.props;
 
-const { title, description } = seo[slug || 'index'];
+const { title, description } = seo[slug || "index"];
 ---
 
 <Layout title={title} description={description}>

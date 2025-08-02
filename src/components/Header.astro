@@ -1,21 +1,20 @@
 ---
-import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
-import type { Link } from '@types';
-
-import { links } from '@data/links';
-import { adjustTypography, pluralize } from '@utils';
+import { links } from "@data/links";
+import type { Link } from "@types";
+import { adjustTypography, pluralize } from "@utils";
+import type { Collection } from "@/types";
 
 export interface Props {
-    title: string;
-    items: CollectionEntry<ContentCollectionKey>[];
+  title: string;
+  items: Collection;
 }
 
 const { title, items } = Astro.props;
 
 const url = new URL(Astro.request.url);
 const menu = Object.keys(links.nav).reduce((accumulator: Link[], key) => {
-    key !== 'index' && accumulator.push(links.nav[key]);
-    return accumulator;
+  key !== "index" && accumulator.push(links.nav[key]);
+  return accumulator;
 }, []);
 ---
 

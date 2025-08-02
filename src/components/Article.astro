@@ -1,10 +1,9 @@
 ---
-import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
-
-import { adjustTypography, getThumb } from '@utils';
+import { adjustTypography, getThumb } from "@utils";
+import type { CollectionItem } from "@/types";
 
 export interface Props {
-    item: CollectionEntry<ContentCollectionKey>;
+  item: CollectionItem;
 }
 
 const { item } = Astro.props;
@@ -71,10 +70,10 @@ const thumb = getThumb(item);
     <img class="thumb" src={thumb.image.path} width={thumb.image.size.width} height={thumb.image.size.height} loading="lazy" alt="">
     <div class="data">
         <h3 class="title">{adjustTypography(thumb.title)}</h3>
-        {item.data.author ? (
-            <div class="author">{adjustTypography(item.data.author)}</div>
-        ) : null}
-        <div class="imprint">{item.data.issue ? item.data.publisher : `${item.data.publisher}, ${item.data.year}`}</div>
+        {"author" in item.data && (
+            <div class="author">{adjustTypography(item.data.author || "")}</div>
+        )}
+        <div class="imprint">{"issue" in item.data ? item.data.publisher : `${item.data.publisher}, ${item.data.year}`}</div>
         {thumb.status ? (
             <div class="status">
                 {thumb.status.map((status: string) => (

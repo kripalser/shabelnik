@@ -1,12 +1,11 @@
 ---
-import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
-
-import Article from './Article.astro';
+import type { Collection } from "@/types";
+import Article from "./Article.astro";
 
 export interface Props {
-    items: CollectionEntry<ContentCollectionKey>[];
-    slug: string;
-    title: string;
+  items: Collection;
+  slug: string;
+  title: string;
 }
 
 const { items, slug, title } = Astro.props;

@@ -1,19 +1,24 @@
 ---
-import Header from '@components/Header.astro';
-import Footer from '@components/Footer.astro';
+import { config } from "@/config";
+import { collections } from "@/utils/collections";
 
-import { config } from '@config';
-import { collections } from '@utils';
+const { language } = config;
+const { title, description } = Astro.props;
+
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
 
 export interface Props {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
 }
 
-const items = [...collections.aids.all, ...collections.books.all, ...collections.magazines.all, ...collections.filmstrips.all];
-
-const { title, description } = Astro.props;
-const { language } = config;
+const items = [
+  ...collections.aids.all,
+  ...collections.books.all,
+  ...collections.magazines.all,
+  ...collections.filmstrips.all,
+];
 ---
 
 <style lang="scss" is:global>
@@ -77,26 +82,27 @@ const { language } = config;
 
 <!doctype html>
 <html lang={language}>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator}/>
 
-    <title>{title}</title>
-    <meta name="description" content={description}>
+        <title>{title}</title>
+        <meta name="description" content={description}/>
 
-    <link rel="icon" href="/assets/img/favicon/favicon.ico" sizes="any">
-    <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/assets/img/favicon/site.webmanifest">
-    <meta name="theme-color" content="#ffffff">
-</head>
-<body>
-<div class="layout">
-    <Header title={title} items={items} />
-    <main>
-        <slot />
-    </main>
-    <Footer />
-</div>
-</body>
+        <link rel="icon" href="/assets/img/favicon/favicon.ico" sizes="any">
+        <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+        <link rel="manifest" href="/assets/img/favicon/site.webmanifest">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+    <body>
+        <div class="layout">
+            <Header title={title} items={items} />
+            <main>
+                <slot />
+            </main>
+            <Footer />
+        </div>
+    </body>
 </html>

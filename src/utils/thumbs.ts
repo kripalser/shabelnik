@@ -1,38 +1,36 @@
-import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
+import { formatDefault, formats } from "@data/formats";
+import { statuses } from "@data/statuses";
+import { getSlug } from "@utils";
+import type { CollectionItem, Status } from "@/types.ts";
 
-import { getSlug } from '@utils';
-import { formats, formatDefault } from '@data/formats';
-import { statuses } from '@data/statuses';
-
-const getFullTitle = (item: CollectionEntry<ContentCollectionKey>) => {
-    return item.data.issue ? `${item.data.title} № ${item.data.issue}, ${item.data.year}` : item.data.title;
+const getFullTitle = (item: CollectionItem) => {
+  return "issue" in item.data
+    ? `${item.data.title} № ${item.data.issue}, ${item.data.year}`
+    : item.data.title;
 };
 
-const getImagePath = (item: CollectionEntry<ContentCollectionKey>) => {
-    const editionYear = item.data.edition ? `-${item.data.year}` : '';
-    return `/assets/img/collections/${item.collection}/${getSlug(getFullTitle(item)) + editionYear}-thumb.jpg`;
+const getImagePath = (item: CollectionItem) => {
+  const editionYear = "edition" in item.data ? `-${item.data.year}` : "";
+  return `/assets/img/collections/${item.collection}/${getSlug(getFullTitle(item)) + editionYear}-thumb.jpg`;
 };
 
 const getThumbSize = (format: string = formatDefault) => {
-    return formats[format.replace('×', 'x')];
+  return formats[format];
 };
 
-// Todo: add types for statuses (share with Zod)
-export const getStatus = (status: string) => {
-    // @ts-ignore
-    return statuses[status];
+export const getStatus = (status: Status) => {
+  return statuses[status];
 };
 
-// Todo: add type
-export const getThumb = (item: CollectionEntry<ContentCollectionKey>) => {
-    return {
-        title: getFullTitle(item),
-        image: {
-            path: getImagePath(item),
-            size: getThumbSize(item.data.format),
-        },
-        status: item.data.status?.map((status: string) => {
-            return getStatus(status);
-        }),
-    };
+export const getThumb = (item: CollectionItem) => {
+  return {
+    title: getFullTitle(item),
+    image: {
+      path: getImagePath(item),
+      size: getThumbSize(item.data.format),
+    },
+    status: item.data.status?.map((status: Status) => {
+      return getStatus(status);
+    }),
+  };
 };

@@ -1,46 +1,55 @@
-import type { CollectionEntry, ContentCollectionKey } from 'astro:content';
+import type { CollectionEntry, CollectionKey } from "astro:content";
+import type { formats } from "@data/formats.ts";
+import type { statuses } from "@data/statuses.ts";
 
-export type Config = {
-    language: string;
-};
+export interface Config {
+  language: string;
+}
 
-export type CollectionGroup = {
-    collection: string;
-    items: CollectionEntry<ContentCollectionKey>[];
-    merged?: boolean;
-    title: string;
-    slug: string;
-    years: number[];
-};
+interface SEOItem {
+  title: string;
+  description: string;
+}
 
-export type GroupedCollection = {
-    all: CollectionEntry<ContentCollectionKey>[];
-    grouped: CollectionGroup[];
-};
+export interface SEO {
+  [key: string]: SEOItem;
+}
 
-export type Link = {
-    label: string;
-    url: string;
-};
+export type CollectionItem = CollectionEntry<CollectionKey>;
+export type Collection = CollectionItem[];
 
-export type Links = {
-    [key: string]: { [key: string]: Link };
-};
+export interface CollectionGroup {
+  collection: string;
+  items: Collection;
+  merged?: boolean;
+  title: string;
+  slug: string;
+  years: number[];
+}
 
-type SeoItem = {
-    title: string;
-    description: string;
-};
+export interface GroupedCollection {
+  all: Collection;
+  grouped: CollectionGroup[];
+}
 
-export type Seo = {
-    [key: string]: SeoItem;
-};
+export interface Link {
+  label: string;
+  url: string;
+}
 
-export type ThumbSize = {
-    width: number;
-    height: number;
-};
+export interface Links {
+  [key: string]: { [key: string]: Link };
+}
 
-export type Formats = {
-    [key: string]: ThumbSize;
-};
+export interface ThumbSize {
+  width: number;
+  height: number;
+}
+
+export interface Formats {
+  [key: string]: ThumbSize;
+}
+
+export type Format = keyof typeof formats;
+
+export type Status = keyof typeof statuses;
