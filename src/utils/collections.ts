@@ -25,9 +25,13 @@ export const getYearsRange = (years: number[]) => {
 };
 
 const sortCollection = (collection: Collection) => {
-  return collection.sort(
-    (a, b) => a.data.year.valueOf() - b.data.year.valueOf(),
-  );
+  return collection
+    .sort((a, b) =>
+      a.data.title.localeCompare(b.data.title, ["en", "fr", "ru"], {
+        numeric: true,
+      }),
+    )
+    .sort((a, b) => a.data.year.valueOf() - b.data.year.valueOf());
 };
 
 const groupCollection = ({
