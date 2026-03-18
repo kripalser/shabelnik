@@ -1,6 +1,6 @@
 import type { CollectionEntry, CollectionKey } from "astro:content";
-import type { formats } from "@data/formats.ts";
-import type { statuses } from "@data/statuses.ts";
+import type { formats } from "@/data/formats.ts";
+import type { statuses } from "@/data/statuses.ts";
 
 export interface Config {
   language: string;

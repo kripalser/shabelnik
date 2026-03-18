@@ -1,7 +1,7 @@
 import { defineCollection, z } from "astro:content";
-import { formats } from "@data/formats";
-import { statuses } from "@data/statuses.ts";
-import type { Status } from "@types";
+import { formats } from "@/data/formats";
+import { statuses } from "@/data/statuses.ts";
+import type { Status } from "@/types";
 import { glob } from "astro/loaders";
 
 const yearSchema = z.custom<number>((val) => {

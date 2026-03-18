@@ -1,4 +1,4 @@
-import type { SEO } from "@types";
+import type { SEO } from "@/types";
 
 const seo: SEO = {
   index: {

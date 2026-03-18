@@ -1,9 +1,9 @@
 ---
-import Articles from "@components/Articles.astro";
-import { links } from "@data/links";
-import { seo } from "@data/seo";
-import Layout from "@layouts/Layout.astro";
-import { collections, getSlug, getYearsRange } from "@utils";
+import Articles from "@/components/Articles.astro";
+import { links } from "@/data/links";
+import { seo } from "@/data/seo";
+import Layout from "@/layouts/Layout.astro";
+import { collections, getSlug, getYearsRange } from "@/utils";
 import type { GetStaticPathsItem } from "astro";
 
 export async function getStaticPaths() {

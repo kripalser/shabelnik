@@ -1,4 +1,4 @@
-import type { Links } from "@types";
+import type { Links } from "@/types";
 
 const links: Links = {
   nav: {

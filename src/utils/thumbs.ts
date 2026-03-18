@@ -1,6 +1,6 @@
-import { formatDefault, formats } from "@data/formats";
-import { statuses } from "@data/statuses";
-import { getSlug } from "@utils";
+import { formatDefault, formats } from "@/data/formats";
+import { statuses } from "@/data/statuses";
+import { getSlug } from "@/utils";
 import type { CollectionItem, Status } from "@/types.ts";
 
 const getFullTitle = (item: CollectionItem) => {

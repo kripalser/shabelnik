@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
-import type { Collection, CollectionGroup, CollectionItem } from "@types.ts";
-import { getSlug } from "@utils/slugs.ts";
+import type { Collection, CollectionGroup, CollectionItem } from "@/types.ts";
+import { getSlug } from "@/utils/slugs.ts";
 
 const aids = await getCollection("aids");
 const books = await getCollection("books");

@@ -1,4 +1,4 @@
-import type { Formats } from "@types";
+import type { Formats } from "@/types";
 
 // Minimum size in mm from ГОСТ 5773-90 (https://docs.cntd.ru/document/1200015243)
 const formats: Formats = {
