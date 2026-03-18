@@ -1,8 +1,9 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 import { formats } from "@/data/formats";
 import { statuses } from "@/data/statuses.ts";
 import type { Status } from "@/types";
-import { glob } from "astro/loaders";
 
 const yearSchema = z.custom<number>((val) => {
   return /(?:19|20)[0-9]{2}/.test(val as string);
