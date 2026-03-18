@@ -31,4 +31,4 @@ const formats: Formats = {
 // Used by filmstrips
 const formatDefault: string = "24×18";
 
-export { formats, formatDefault };
+export { formatDefault, formats };
