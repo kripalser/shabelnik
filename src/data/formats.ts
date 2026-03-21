@@ -26,6 +26,8 @@ const formats: Formats = {
   "56×44": { width: 186, height: 146 },
   "87×58": { width: 290, height: 193 },
   "58×87": { width: 193, height: 290 },
+  "10.5″×14″": { width: 267, height: 356 }, // Life magazine
+  A3: { width: 297, height: 420 },
 } as const;
 
 // Used by filmstrips
